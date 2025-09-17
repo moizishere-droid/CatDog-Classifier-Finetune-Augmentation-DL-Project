@@ -8,7 +8,7 @@ from huggingface_hub import hf_hub_download
 # Download model from Hugging Face
 # -----------------------------
 MODEL_PATH = hf_hub_download(
-    repo_id="Abdulmoiz123/cat-dog-classifier",  # Your Hugging Face repo
+    repo_id="https://huggingface.co/Abdulmoiz123/cat-dog-classifier/tree/main",  # Your Hugging Face repo
     filename="cat_vs_dog_model.keras",                        # Model file name inside HF repo
     local_dir="."                               # Save locally in Streamlit
 )
@@ -51,4 +51,5 @@ if uploaded_file:
     else:
         st.success(f"**Cat 🐱** (Confidence: {(1-probability)*100:.2f}%)")
         st.progress(int((1-probability) * 100))
+
 
