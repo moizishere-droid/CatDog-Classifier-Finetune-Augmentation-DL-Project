@@ -1,3 +1,7 @@
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"  # Streamlit Cloud has no GPU
+
+
 import streamlit as st
 import numpy as np
 from PIL import Image
@@ -51,5 +55,6 @@ if uploaded_file:
     else:
         st.success(f"**Cat 🐱** (Confidence: {(1-probability)*100:.2f}%)")
         st.progress(int((1-probability) * 100))
+
 
 
