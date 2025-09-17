@@ -5,3 +5,4 @@ rich>=10.14.0
 pillow==10.4.0
 
 
+huggingface_hub==0.17.3
