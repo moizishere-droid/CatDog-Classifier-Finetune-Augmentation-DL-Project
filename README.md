@@ -7,6 +7,19 @@ We fine-tune a pre-trained **EfficientNetV2L** model (trained on ImageNet) and a
 The final model is trained **end-to-end** with additional dense layers for classification.
 
 ---
+## Trained Model
+The trained Cat vs Dog classifier model is hosted on Hugging Face:
+👉 [Cat-Dog Classifier Model](https://huggingface.co/Abdulmoiz123/cat-dog-classifier)
+
+---
+
+## 🌐 Deployment
+
+You can try the model live here:
+👉 [**Live Demo Link**](https://your-deployed-project-link.com)
+
+---
+
 
 ## 📂 Dataset
 
@@ -87,13 +100,6 @@ img = np.expand_dims(img, axis=0)  # Add batch dimension
 pred = model.predict(img)
 print("Prediction:", "Dog" if pred[0][0] > 0.5 else "Cat")
 ```
-
----
-
-## 🌐 Deployment
-
-You can try the model live here:
-👉 [**Live Demo Link**](https://your-deployed-project-link.com)
 
 ---
 
