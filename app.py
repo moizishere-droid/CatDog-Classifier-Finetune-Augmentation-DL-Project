@@ -6,9 +6,11 @@ from tensorflow.keras.models import load_model
 
 # Download model from Hugging Face Hub
 model_path = hf_hub_download(
-    repo_id="Abdulmoiz123/cat-dog-classifier", 
-    filename="cat_vs_dog_model.keras"
+    repo_id="Abdulmoiz123/cat-dog-classifier",
+    filename="cat_vs_dog_model.keras",
+    local_files_only=True
 )
+
 # Load the model
 my_model = load_model(model_path, compile=False)
 
@@ -57,4 +59,5 @@ if uploaded_file is not None:
 
     # Show probability bar
     st.progress(int(probability * 100) if probability > 0.5 else int((1-probability) * 100))
+
 
