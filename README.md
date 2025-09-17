@@ -13,14 +13,6 @@ The trained Cat vs Dog classifier model is hosted on Hugging Face:
 
 ---
 
-## 🌐 Deployment
-
-You can try the model live here:
-👉 [**Live Demo Link**](https://your-deployed-project-link.com)
-
----
-
-
 ## 📂 Dataset
 
 * Source: [Kaggle Cat & Dog Dataset](https://www.kaggle.com/datasets/tongpython/cat-and-dog)
