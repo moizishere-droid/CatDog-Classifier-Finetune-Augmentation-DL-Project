@@ -4,15 +4,19 @@ import numpy as np
 from PIL import Image
 from tensorflow.keras.models import load_model
 
-# Download model from Hugging Face Hub
-model_path = hf_hub_download(
-    repo_id="Abdulmoiz123/cat-dog-classifier",
-    filename="cat_vs_dog_model.keras",
-    local_files_only=True
-)
+@st.cache_resource
+def load_my_model():
+    from huggingface_hub import hf_hub_download
+    from tensorflow.keras.models import load_model
 
-# Load the model
-my_model = load_model(model_path, compile=False)
+    model_path = hf_hub_download(
+        repo_id="Abdulmoiz123/cat-dog-classifier",
+        filename="cat_vs_dog_model.keras"
+    )
+    model = load_model(model_path, compile=False)
+    return model
+
+my_model = load_my_model()
 
 def preprocess_image(image: Image.Image):
     # Resize image to model input size
@@ -59,5 +63,6 @@ if uploaded_file is not None:
 
     # Show probability bar
     st.progress(int(probability * 100) if probability > 0.5 else int((1-probability) * 100))
+
 
 
