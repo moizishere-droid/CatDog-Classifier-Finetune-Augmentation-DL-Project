@@ -1,15 +1,16 @@
+from huggingface_hub import hf_hub_download
 import streamlit as st
 import numpy as np
 from PIL import Image
 from tensorflow.keras.models import load_model
 
-@st.cache_resource
-def load_cnn_model():
-    model = load_model("cat_vs_dog_model.keras")
-    return model
-
-my_model = load_cnn_model()
-
+# Download model from Hugging Face Hub
+model_path = hf_hub_download(
+    repo_id="Abdulmoiz123/cat-dog-classifier", 
+    filename="cat_vs_dog_model.keras"
+)
+# Load the model
+my_model = load_model(model_path, compile=False)
 
 def preprocess_image(image: Image.Image):
     # Resize image to model input size
@@ -56,3 +57,4 @@ if uploaded_file is not None:
 
     # Show probability bar
     st.progress(int(probability * 100) if probability > 0.5 else int((1-probability) * 100))
+
