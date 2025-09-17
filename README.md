@@ -96,19 +96,27 @@ Validation Recall: 1.0000
 🚀 Usage (Prediction on Raw Images)
 
 from PIL import Image
+
 import numpy as np
+
 from tensorflow.keras.models import load_model
 
 # Load trained model
+
 model = load_model("my_model.h5")
 
 # Load and preprocess image
+
 image = Image.open("test_image.jpg").resize((224,224))
+
 img = np.asarray(image).astype("float32")
+
 img = np.expand_dims(img, axis=0)  # Add batch dimension
 
 # Predict
+
 pred = model.predict(img)
+
 print("Prediction:", "Dog" if pred[0][0] > 0.5 else "Cat")
 
 
