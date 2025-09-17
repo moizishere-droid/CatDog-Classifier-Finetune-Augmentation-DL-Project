@@ -20,8 +20,11 @@ Images resized to 224×224 for EfficientNet input.
 Data Augmentation applied to reduce overfitting and improve generalization:
 
 1) Random flip (horizontal/vertical)
+
 2) Random rotation
+
 3) Random zoom
+
 4) Random brightness/contrast adjustments
 
 
@@ -76,9 +79,13 @@ Confusion Matrix: Correctly separates cats vs dogs.
 👉 Training & Validation Performance
 
 Training Accuracy: 0.9858
+
 Validation Accuracy: 0.9901
+
 Validation Loss: 0.0236
+
 Validation Precision: 0.9907
+
 Validation Recall: 1.0000
 
 ✅ These results show that the model generalizes very well, with high precision and recall, meaning it rarely misses cats/dogs and makes very few false positives.
