@@ -3,6 +3,10 @@ import streamlit as st
 import numpy as np
 from PIL import Image
 from tensorflow.keras.models import load_model
+import os
+
+
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"  # disables GPU
 
 @st.cache_resource
 def load_my_model():
@@ -63,6 +67,7 @@ if uploaded_file is not None:
 
     # Show probability bar
     st.progress(int(probability * 100) if probability > 0.5 else int((1-probability) * 100))
+
 
 
 
