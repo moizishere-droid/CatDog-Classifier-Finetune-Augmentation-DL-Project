@@ -14,9 +14,9 @@ The final model is trained **end-to-end** with additional dense layers for class
 * Train/Test split created using **`image_dataset_from_directory`**.
 * Images resized to **224×224** for EfficientNet input.
 
-## Data Augmentation
+## 🌀 Data Augmentation
 
-#Data Augmentation applied to reduce overfitting and improve generalization
+Data Augmentation applied to reduce overfitting and improve generalization
 
 * Random flip (horizontal/vertical)
 * Random rotation
