@@ -1,28 +1,26 @@
-import os
-import urllib.request
 import streamlit as st
 import numpy as np
 from PIL import Image
-from tensorflow.keras.models import load_model
+import tensorflow as tf
+from huggingface_hub import hf_hub_download
 
-# Disable GPU to avoid CUDA errors if no GPU is available
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+# -----------------------------
+# Download model from Hugging Face
+# -----------------------------
+MODEL_PATH = hf_hub_download(
+    repo_id="Abdulmoiz123/cat-dog-classifier",  # Your Hugging Face repo
+    filename="cat_vs_dog_model.keras",                        # Model file name inside HF repo
+    local_dir="."                               # Save locally in Streamlit
+)
 
-# Hugging Face direct model link and local path
-MODEL_URL = "https://huggingface.co/Abdulmoiz123/cat-dog-classifier/resolve/main/cat_vs_dog_model.keras"
-MODEL_PATH = "cat_vs_dog_model.keras"
-
-# Load model (cached)
+# -----------------------------
+# Load model (cache for speed)
+# -----------------------------
 @st.cache_resource
-def load_my_model():
-    if not os.path.exists(MODEL_PATH):
-        st.info("Downloading model (~475MB). Please wait...")
-        urllib.request.urlretrieve(MODEL_URL, MODEL_PATH)
-        st.success("Model downloaded successfully!")
-    model = load_model(MODEL_PATH, compile=False)
-    return model
+def load_model():
+    return tf.keras.models.load_model(MODEL_PATH)
 
-my_model = load_my_model()
+model = load_model()
 
 # Image preprocessing
 def preprocess_image(image: Image.Image):
@@ -53,3 +51,4 @@ if uploaded_file:
     else:
         st.success(f"**Cat 🐱** (Confidence: {(1-probability)*100:.2f}%)")
         st.progress(int((1-probability) * 100))
+
