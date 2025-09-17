@@ -1,21 +1,24 @@
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"  # Streamlit Cloud has no GPU
-
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"  # Disable GPU (Streamlit Cloud has no GPU)
 
 import streamlit as st
 import numpy as np
 from PIL import Image
 import tensorflow as tf
-from huggingface_hub import hf_hub_download
+import requests
+
+MODEL_PATH = "cat_vs_dog_model.keras"
 
 # -----------------------------
-# Download model from Hugging Face
+# Download model directly from Hugging Face
 # -----------------------------
-MODEL_PATH = hf_hub_download(
-    repo_id="https://huggingface.co/Abdulmoiz123/cat-dog-classifier/tree/main",  # Your Hugging Face repo
-    filename="cat_vs_dog_model.keras",                        # Model file name inside HF repo
-    local_dir="."                               # Save locally in Streamlit
-)
+if not os.path.exists(MODEL_PATH):
+    with st.spinner("Downloading model from Hugging Face..."):
+        url = "https://huggingface.co/Abdulmoiz123/cat-dog-classifier/resolve/main/cat_vs_dog_model.keras?download=true"
+        r = requests.get(url, stream=True)
+        with open(MODEL_PATH, "wb") as f:
+            for chunk in r.iter_content(chunk_size=8192):
+                f.write(chunk)
 
 # -----------------------------
 # Load model (cache for speed)
@@ -55,6 +58,7 @@ if uploaded_file:
     else:
         st.success(f"**Cat 🐱** (Confidence: {(1-probability)*100:.2f}%)")
         st.progress(int((1-probability) * 100))
+
 
 
 
