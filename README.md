@@ -101,7 +101,19 @@ print("Prediction:", "Dog" if pred[0][0] > 0.5 else "Cat")
 * Unfreezing last 20 layers allows the model to adapt to new dataset features.
 * Preprocessing consistency (training vs raw prediction) is critical for good performance.
 * Data Augmentation to reduce overfitting and improve generalization.
- 
+
+---
+
+title: Cat Dog Classifer App
+emoji: 🚀
+colorFrom: red
+colorTo: red
+sdk: docker
+app_port: 8501
+tags:
+  - streamlit
+pinned: false
+short_description: Streamlit template space
 
 
 
